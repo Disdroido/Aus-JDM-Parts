@@ -1,11 +1,11 @@
-<header class="fixed w-full top-0 text-gray-400 bg-gray-900 body-font h-20">
-  <div class="flex p-4 flex-col flex-row">    
+<!-- <header class="fixed w-full top-0 text-gray-400 bg-gray-900 body-font h-20">
+  <div class="flex p-4 flex-row">    
     <nav class="flex text-base justify-center ml-0">
-        <a class="flex title-font font-medium text-white">
+        <a class="flex title-font font-medium text-white justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span class="ml-3 text-xl">Aus JDM Parts</span>
+            <span class="ml-3 md:text-xl sm:text-m justify-center">Aus JDM Parts</span>
         </a>
         <button id="nav-btn-open" class="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -24,9 +24,9 @@
             <% if user_signed_in? %>
                 <li>
                     <div class="flex">
-                        <div class="mr-1 md:visible sm:invisible">
+                        <div class="mr-1  md:hidden">
                             <p class="mr-1 text-md font-medium tracking-wide truncate text-gray-100 font-sans"><%= current_user.email %></p>
-                            <div class="badge md:visible sm:invisible">
+                            <div class="badge">
                                 <span class="px-2 py-0.5 mr-0 float-right text-xs font-medium tracking-wide text-blue-800 bg-blue-100 rounded-full">Admin</span>
                             </div>
                         </div>
@@ -137,4 +137,46 @@
         $('#nav-btn-open').addClass("hidden");
         $('#nav-btn-close').removeClass("hidden");
     });
-</script>
+</script> -->
+
+<div class="pb-0 mx-auto flex flex-wrap ">
+    <div class="p-4 w-full bg-gray-900">
+      <!--dark mode - text and icons-->
+      <div class="p-2 text-gray-200 bg-gray-900 rounded-lg shadow-lg font-medium capitalize">
+        <span class="px-2 mr-2 border-r border-gray-800">
+            <h3 class="inline mx-auto">Aus JDM Parts</h3>
+        </span>
+        <span class="px-2 py-1 cursor-pointer hover:bg-gray-800 hover:text-gray-300 text-sm rounded mb-5">
+          <i class="w-8 fas fa-stream p-2 bg-gray-800 rounded-full">
+          </i>
+          <span class="mx-1">categories</span>
+        </span>
+        <span class="px-2 py-1 cursor-pointer hover:bg-gray-800 hover:text-gray-300 text-sm rounded mb-5">
+          <i class="w-8 fas fa-th p-2 bg-gray-800 rounded-full">
+          </i>
+          <span class="mx-1">menu</span>
+        </span>
+        <span class="px-1 hover:text-white cursor-pointer">
+          <i class="fas fa-search p-2 bg-gray-800 rounded-full">
+          </i>
+        </span>
+        <span class="px-1 hover:text-white cursor-pointer">
+          <i class="w-8 fas fa-calendar-alt p-2 bg-gray-800 rounded-full">
+          </i>
+        </span>
+        <span class="px-1 hover:text-white cursor-pointer w-8 relative">
+          <i class="w-8 fas fa-bell p-2 bg-gray-800 rounded-full">
+          </i>
+          <span
+            class="absolute right-0 top-0 -mt-2 -mr-1 text-xs bg-red-500 text-white font-medium px-2 shadow-lg rounded-full">3</span>
+        </span>
+        <span class="hover:text-white cursor-pointer w-10 relative float-right mr-3">
+          <i class="fas fa-user p-2 bg-gray-800 rounded-full">
+          </i>
+          <span
+            class="absolute right-0 top-0 -mt-1 -mr-1 text-xs bg-yellow-500 text-black font-medium px-2 rounded-full">3</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
