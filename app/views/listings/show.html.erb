@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @listing.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
+</p>
+
+<p>
+  <strong>Retail price:</strong>
+  <%= @listing.retail_price %>
+</p>
+
+<p>
+  <strong>Vehicle make:</strong>
+  <%= @listing.vehicle_make %>
+</p>
+
+<p>
+  <strong>Vehicle model:</strong>
+  <%= @listing.vehicle_model %>
+</p>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>

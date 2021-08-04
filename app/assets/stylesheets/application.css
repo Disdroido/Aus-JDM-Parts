@@ -21,7 +21,7 @@ body {
 }
 
 .menu {
-    transition: all .3s ease;
+    transition: all .3s ease !important;
     transition-duration: .5s !important;
 }
 
@@ -41,7 +41,7 @@ body {
 .nav-btn {
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: auto;
     display: block;
     width: 48px;
     height: 48px;
