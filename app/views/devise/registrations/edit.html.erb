@@ -18,11 +18,6 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div>
-    <%= f.label :role %><br />
-    <%= f.text_field :role_id, autofocus: true, value: current_user.role_id %>
-  </div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
