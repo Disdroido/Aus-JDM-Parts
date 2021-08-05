@@ -1,0 +1,8 @@
+<h1><%= @user.name %></h1>
+<h3><%= @user.username %></h3>
+
+<p><strong>Role:</strong> <%= @user.role.name %></p>
+
+<% if current_user.id == @user.id %>
+    <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'button' %>
+<% end %>

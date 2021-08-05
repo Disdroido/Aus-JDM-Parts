@@ -1,0 +1,16 @@
+<%= form_with(model: user, local: true) do |form| %>
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+    </div>
+
+    <div>
+        <%= form.label :username %>
+        <%= form.text_field :username %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+        <%= link_to 'Cancel', users_path %>
+    </div>
+<% end %>
