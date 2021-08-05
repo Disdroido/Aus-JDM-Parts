@@ -10,9 +10,6 @@ task :default_roles => :environment do
     default = Role.find_by(code: 'default')
     moderator = Role.find_by(code: 'moderator')
     admin = Role.find_by(code: 'admin')
-
-    User.update_all(role_id: default.id)
-    User.find_by(email: 'admin@ausjdmparts.com').update(role_id: admin.id)
 end
 
 desc "role tasks"
