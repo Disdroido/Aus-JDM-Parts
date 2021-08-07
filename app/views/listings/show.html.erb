@@ -1,29 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @listing.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
-
-<p>
-  <strong>Retail price:</strong>
-  <%= @listing.retail_price %>
-</p>
-
-<p>
-  <strong>Vehicle make:</strong>
-  <%= @listing.vehicle_make %>
-</p>
-
-<p>
-  <strong>Vehicle model:</strong>
-  <%= @listing.vehicle_model %>
-</p>
-
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Back', listings_path %>
+
+<div class="px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap">
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= @listing.name %></h1>
+
+        <p class="leading-relaxed"><%= @listing.description %></p>
+        <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+          <div class="flex">
+            <span class="mr-3">Make:</span>
+            <button class="border-b-2 border-indigo-500 uppercase"><%= @listing.vehicle_make %></button>
+          </div>
+
+          <div class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
+            <span class="mr-3">Model:</span>
+            <button class="border-b-2 border-indigo-500 uppercase"><%= @listing.vehicle_model %></button>
+          </div>
+        </div>
+        <div class="flex">
+          <span class="title-font font-medium text-2xl text-gray-900">$<%= @listing.retail_price %></span>
+          <%= link_to 'Back', listings_path, class: 'flex ml-auto mr-2 text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded' %>
+          <button class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
