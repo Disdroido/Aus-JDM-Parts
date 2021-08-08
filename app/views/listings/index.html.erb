@@ -2,15 +2,17 @@
 
 <h1 class="text-4xl">Listings</h1>
 
-<br>
-
-<%= link_to 'New Listing', new_listing_path %>
-
 <%= search_form_for @q do |f| %>
-  <%= f.label :name_or_vehicle_make_or_vehicle_model_cont %>
-  <%= f.search_field :name_or_vehicle_make_or_vehicle_model_cont %>
-
-  <%= f.submit name: '' %>
+  <div class="w-full h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
+    <input type="search" name="q[name_or_vehicle_make_or_vehicle_model_cont]" id="q_name_or_vehicle_make_or_vehicle_model_cont" placeholder="Search" autocomplete="none"
+          class="appearance-none w-full outline-none focus:outline-none active:outline-none"/>
+    <button type="submit" name="" data-disable-with="Search" class="ml-1 outline-none focus:outline-none active:outline-none">
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          viewBox="0 0 24 24" class="w-6 h-6">
+        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </button>
+  </div>
 <% end %>
 
 <div class="py-24 mx-auto">

@@ -6,3 +6,5 @@
 <% if current_user.id == @user.id %>
     <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'button' %>
 <% end %>
+
+<%= link_to 'New Listing', new_listing_path %>
