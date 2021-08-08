@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listings</h1>
+<h1 class="text-4xl">Listings</h1>
 
 <br>
 
 <%= link_to 'New Listing', new_listing_path %>
 
-<div class="container px-5 py-24 mx-auto">
+<div class="py-24 mx-auto">
   <div class="flex flex-wrap -m-4">
     <% @listings.each do |listing| %>
-      <div class="lg:w-1/4 md:w-1/2 p-4 m-2 w-full hover:shadow-lg rounded transition-all duration-500">
+      <div class="lg:w-1/4 md:w-1/2 p-4 m-2 w-full md:shadow-none hover:shadow-lg shadow-lg rounded transition-all duration-500">
         <a class="block relative h-48 rounded overflow-hidden">
           <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
         </a>

@@ -1,0 +1,261 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+    overflow-x: hidden !important;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 5rem;
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo {
+    margin-right: auto;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav div.nav-wrapper {
+    top: 0 !important;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li:not(:first-child) {
+    margin-left: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 20px;
+}
+
+nav ul li .link {
+    outline: none;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    padding: 5px 0;
+    opacity: 1;
+    transition: all .3s ease !important;
+    color: #fff;
+}
+
+.btn {
+    padding: 10px 15px !important;
+}
+
+/* hidden on screen style */
+.hidden {
+    display: none;
+}
+
+.lg-hidden {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 846px) {
+
+    /* logo and branding style */
+    .logo {
+        opacity: 1;
+        transition: all .5s ease;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .brand {
+        margin-top: 0px !important;
+        padding: 0;
+        margin-left: 20px;
+        height: 5rem;
+        align-items: center;
+    }
+
+    .brand img {
+        height: 30px;
+    }
+
+    /* navigation wrapper style */
+    .nav-wrapper {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        z-index: -1;
+        opacity: 0;
+        transition: all 0.5s ease;
+        float: none;
+    }
+
+    .nav-wrapper ul {
+        margin-top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: 100vh;
+        transition: all .4s ease;
+        color: #333;
+        z-index: 100;
+    }
+
+    .nav-wrapper ul li {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        transition: all .4s ease;
+        padding: 15px 0;
+    }
+
+    .nav-wrapper ul li:first-child {
+        padding-top: 0;
+    }
+
+    .nav-wrapper ul li:not(:first-child) {
+        margin-left: 0px;
+    }
+
+    .nav-wrapper ul li .link {
+        opacity: 0;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin: 0 auto;
+        transition: all .5s ease;
+    }
+
+    /* navigation button style */
+    .nav-btn {
+        position: absolute;
+        right: 10px;
+        display: block;
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        z-index: 1000;
+        border-radius: 50%;
+    }
+
+    .nav-btn i {
+        display: flex;
+        width: 20px;
+        height: 2px;
+        background-color: #fff;
+        border-radius: 2px;
+        margin-left: 14px;
+        transition: all .5s ease-in-out;
+    }
+
+    .nav-btn i:nth-child(1) {
+        margin-top: 16px;
+    }
+
+    .nav-btn i:nth-child(2) {
+        margin-top: 4px;
+        opacity: 1;
+        width: 10px;
+    }
+
+    .nav-btn i:nth-child(3) {
+        margin-top: 4px;
+    }
+
+    /* menu close btn rotation */
+    #nav:checked+.nav-btn i {
+        background-color: #fff;
+        transition: all .5s ease-in-out;
+    }
+
+    #nav:checked+.nav-btn i:nth-child(1) {
+        transform: translateY(6px) rotate(225deg);
+    }
+
+    #nav:checked+.nav-btn i:nth-child(2) {
+        opacity: 0;
+        transform: translateY(6px) rotate(180deg);
+    }
+
+    #nav:checked+.nav-btn i:nth-child(3) {
+        transform: translateY(-6px) rotate(135deg);
+    }
+
+    /* menu open btn rotation */
+    .nav-btn i:nth-child(1) {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    .nav-btn i:nth-child(2) {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+
+    .nav-btn i:nth-child(3) {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    /* check box changes */
+    #nav:checked~.nav-wrapper {
+        right: 0;
+        z-index: 999;
+        opacity: 1;
+    }
+
+    #nav:checked~.logo {
+        opacity: 0;
+    }
+
+    #nav:checked~.nav-wrapper ul li .link {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .hidden {
+        display: none;
+        opacity: 0;
+    }
+
+    .lg-hidden {
+        display: flex;
+    }
+}

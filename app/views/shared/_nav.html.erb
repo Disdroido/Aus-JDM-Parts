@@ -1,4 +1,4 @@
-<header class="text-gray-200 body-font bg-gray-900">
+<!-- <header class="text-gray-200 body-font bg-gray-900">
   <div class="md:container md:mx-auto flex flex-wrap p-5 flex-col md:flex-row justify-center">
 
     <a href="/" class="flex title-font font-medium text-left md:items-center mb-0 md:ml-0 ml-0 text-gray-200">
@@ -22,7 +22,7 @@
         <% if user_signed_in? %>
             <%= link_to "Profile", user_path(current_user), class: 'flex justify-center items-center hover:text-gray-300 border-b-2 border-transparent hover:border-indigo-500 cursor-pointer transition-all ease duration-500 my-2' %>
         <% else %>
-            <%= link_to "Sign In", new_user_session_path, class: 'flex justify-center items-center mr-5 hover:text-gray-300 border-b-2 border-transparent hover:border-indigo-500 cursor-pointer transition-all ease duration-500 my-2' %>
+            <%= link_to "Sign In", new_user_session_path, class: 'flex justify-center items-center hover:text-gray-300 border-b-2 border-transparent hover:border-indigo-500 cursor-pointer transition-all ease duration-500 my-2' %>
             <%= link_to "Sign Up", new_user_registration_path, class: 'flex justify-center items-center inline-flex items-center bg-gray-200 hover:bg-gray-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 text-gray-900' %>
         <% end %>
         <% if user_signed_in? %>
@@ -31,4 +31,39 @@
     </nav>
 
   </div>
-</header>
+</header> -->
+
+<div class="wrapper">
+    <header>
+        <nav id="navbar" class="bg-gray-900"">
+            <input type="checkbox" id="nav" class="hidden">
+            <label for="nav" class="nav-btn">
+                <i></i>
+                <i></i>
+                <i></i>
+            </label>
+            <div class="logo">
+                <a href="/"><%= image_tag("logo.png") %></a>
+            </div>
+        
+            <div class="nav-wrapper bg-gray-900">
+                <ul>
+                    <li><a href="../" class="lg-hidden brand"><%= image_tag("logo.png") %></a></li>
+                    <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/">home</a></li>
+                    <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/listings">parts</a></li>
+                    <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/users">users</a></li>
+
+                    <% if user_signed_in? %>
+                        <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="<%= user_path(current_user) %>">Profile</a></li>
+                    <% else %>
+                        <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/sign_in">Sign In</a></li>
+                        <li><a class="link btn bg-indigo-500 rounded hover:bg-indigo-600" href="/sign_up">Sign Up</a></li>
+                    <% end %>
+                    <% if user_signed_in? %>
+                        <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/sign_out" data-method="delete">Sign Out</a></li>
+                    <% end %>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
