@@ -1,44 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-4xl">Listings</h1>
+<div class="container mx-auto">
 
-<%= search_form_for @q do |f| %>
-  <div class="w-full h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
-    <input type="search" name="q[name_or_vehicle_make_or_vehicle_model_cont]" id="q_name_or_vehicle_make_or_vehicle_model_cont" placeholder="Search" autocomplete="none"
-          class="appearance-none w-full outline-none focus:outline-none active:outline-none"/>
-    <button type="submit" name="" data-disable-with="Search" class="ml-1 outline-none focus:outline-none active:outline-none">
-      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          viewBox="0 0 24 24" class="w-6 h-6">
-        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-      </svg>
-    </button>
-  </div>
-<% end %>
+  <h1 class="text-4xl">Listings</h1>
 
-<div class="py-24 mx-auto">
-  <div class="flex flex-wrap -m-4">
-    <% @listings.each do |listing| %>
-      <div class="lg:w-1/4 md:w-1/2 p-4 m-2 w-full md:shadow-none hover:shadow-lg shadow-lg rounded transition-all duration-500">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
-        </a>
-        <div class="mt-4">
-          <div class="flex">
-            <p class="text-gray-500 text-xs tracking-widest title-font mb-1 capitalize">CATEGORY</p>
-            <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200"></span>
-            <p class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase"><%= listing.vehicle_make %></p>
-            <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200"></span>
-            <p class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase"><%= listing.vehicle_model %></p>
+  <%= search_form_for @q do |f| %>
+    <div class="w-full h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative mt-5">
+      <input type="search" name="q[name_or_vehicle_make_or_vehicle_model_or_category_name_cont]" id="q_name_or_vehicle_make_or_vehicle_model_or_category_name_cont" placeholder="Search" autocomplete="none"
+            class="appearance-none w-full outline-none focus:outline-none active:outline-none"/>
+      <button type="submit" name="" data-disable-with="Search" class="ml-1 outline-none focus:outline-none active:outline-none">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            viewBox="0 0 24 24" class="w-6 h-6">
+          <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </button>
+    </div>
+  <% end %>
+
+  <div class="py-24 mx-auto">
+    <div class="flex flex-wrap -m-4 grid lg:grid-cols-4 md:grid-cols-1 gap-4 mx-1">
+      <% @listings.each do |listing| %>
+        <div class="w-full p-4 mb-2 md:mx-0 md:shadow-none hover:shadow-lg shadow-lg rounded transition-all duration-500">
+          <a class="block relative h-48 rounded overflow-hidden">
+            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+          </a>
+          <div class="mt-4">
+            <div class="flex">
+              <p class="text-gray-500 text-xs tracking-widest title-font mb-1 capitalize"><% if listing.category %><%= listing.category.name %> <% end %></p>
+              <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200"></span>
+              <p class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase"><%= listing.vehicle_make %></p>
+              <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200"></span>
+              <p class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase"><%= listing.vehicle_model %></p>
+            </div>
+            <p class="text-gray-900 title-font text-lg font-medium"><%= link_to listing.name, listing %></h2>
+            <p class="mt-1">$<%= listing.retail_price %></p>
+            <%= link_to 'View <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>'.html_safe, 
+            listing, class: 'text-indigo-500 inline-flex items-center justify-center md:mb-2 lg:mb-0 w-full border-2 border-indigo-500 rounded p-2 mt-3 hover:bg-indigo-500 hover:text-white transition-all duration-500' %>
           </div>
-          <p class="text-gray-900 title-font text-lg font-medium"><%= link_to listing.name, listing %></h2>
-          <p class="mt-1">$<%= listing.retail_price %></p>
-          <%= link_to 'View <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>'.html_safe, 
-          listing, class: 'text-indigo-500 inline-flex items-center justify-center md:mb-2 lg:mb-0 w-full border-2 border-indigo-500 rounded p-2 mt-3 hover:bg-indigo-500 hover:text-white transition-all duration-500' %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+
 </div>
+
+<%== pagy_nav(@pagy) %>
 
   <!-- <div class="p-4">
     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">

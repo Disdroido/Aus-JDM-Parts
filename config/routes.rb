@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  resources :categories
   devise_for :users
 
   resources :users, only: [:index, :show, :edit, :update]

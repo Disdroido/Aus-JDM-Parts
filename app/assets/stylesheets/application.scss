@@ -19,7 +19,7 @@ body {
     box-sizing: border-box;
 }
 
-nav {
+.nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -40,27 +40,27 @@ nav {
     height: 40px;
 }
 
-nav div.nav-wrapper {
+.nav div.nav-wrapper {
     top: 0 !important;
 }
 
-nav ul {
+.nav ul {
     padding: 0;
 }
 
-nav ul li {
+.nav ul li {
     display: inline-block;
 }
 
-nav ul li:not(:first-child) {
+.nav ul li:not(:first-child) {
     margin-left: 20px;
 }
 
-nav ul li:last-child {
+.nav ul li:last-child {
     margin-right: 20px;
 }
 
-nav ul li .link {
+.nav ul li .link {
     outline: none;
     text-transform: uppercase;
     text-decoration: none;
@@ -259,3 +259,4 @@ label {
         display: flex;
     }
 }
+

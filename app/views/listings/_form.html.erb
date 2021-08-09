@@ -27,6 +27,11 @@
   </div>
 
   <div>
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.order(:name),:id,:name, include_blank: true %>
+  </div>
+
+  <div>
     <%= form.label :brand %>
     <%= form.text_field :brand %>
   </div>

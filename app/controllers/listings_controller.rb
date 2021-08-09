@@ -5,7 +5,8 @@ class ListingsController < ApplicationController
   # GET /listings or /listings.json
   def index
     @q = Listing.ransack(params[:q])
-    @listings = @q.result
+    @pagy, @listings = pagy(@q.result, items: 5)
+
   end
 
   # GET /listings/1 or /listings/1.json
@@ -55,6 +56,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :retail_price, :brand, :vehicle_make, :vehicle_model, :role_id)
+      params.require(:listing).permit(:name, :description, :retail_price, :category_id, :brand, :vehicle_make, :vehicle_model, :role_id)
     end
 end
