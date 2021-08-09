@@ -22,7 +22,10 @@
       <% @listings.each do |listing| %>
         <div class="w-full p-4 mb-2 md:mx-0 md:shadow-none hover:shadow-lg shadow-lg rounded transition-all duration-500">
           <a class="block relative h-48 rounded overflow-hidden">
-            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+            <!-- <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260"> -->
+            <%# if listing.listing_image.attached? %>
+              <%# image_tag listing.listing_image, class: 'object-cover object-center w-full h-full block' %>
+            <%# end %>
           </a>
           <div class="mt-4">
             <div class="flex">

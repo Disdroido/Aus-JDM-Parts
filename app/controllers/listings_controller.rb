@@ -6,7 +6,6 @@ class ListingsController < ApplicationController
   def index
     @q = Listing.ransack(params[:q])
     @pagy, @listings = pagy(@q.result, items: 5)
-
   end
 
   # GET /listings/1 or /listings/1.json
