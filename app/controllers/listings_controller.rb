@@ -55,6 +55,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :retail_price, :category_id, :brand, :vehicle_make, :vehicle_model, :role_id)
+      params.require(:listing).permit(:name, :description, :retail_price, :category_id, :brand, :vehicle_make, :vehicle_model, :role_id, images: [])
     end
 end
