@@ -1,62 +1,74 @@
-<%= form_with(model: listing) do |form| %>
-  <% if listing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+<div class="flex items-center">
+  <div class="container mx-auto">
+    <div class="max-w-md mx-auto">
+      <div class="text-center">
+        <h1 class="mb-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Edit Listing</h1>
+      </div>
+      <div class="">
+        <%= form_with(model: listing) do |form| %>
+          <% if listing.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
 
-      <ul>
-        <% listing.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+              <ul>
+                <% listing.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="mb-6">
+            <%= form.label :images, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.file_field :images, multiple: true, class: 'w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500' %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.label :name, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.text_field :name, class: 'w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500' %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.label :description, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.text_area :description, as: :summernote, class: 'w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500' %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.label :retail_price, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.text_field :retail_price, class: 'w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500' %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.label :category_id, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.collection_select :category_id, Category.order(:name),:id,:name, include_blank: true, class: 'w-full border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none' %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.label :brand, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.text_field :brand, class: 'w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500' %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.label :vehicle_make, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.text_field :vehicle_make, class: 'w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500' %>
+          </div>
+
+          <div class="mb-6">
+              <%= form.label :vehicle_model, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+              <%= form.text_field :vehicle_model, class: 'w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500' %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.label :status, class: 'text-sm text-gray-600 dark:text-gray-400' %>
+            <%= form.select(:status, [['Active', 'active'], ['Not Active', 'not active']]) %>
+          </div>
+
+          <div class="mb-6">
+            <%= form.submit "Update Listing", class: 'w-full px-3 py-3 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none cursor-pointer hover:bg-indigo-600 duration-500' %>
+          </div>
+
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :images %>
-    <%= form.file_field :images, multiple: true %>
   </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, as: :summernote %>
-  </div>
-
-  <div class="field">
-    <%= form.label :retail_price %>
-    <%= form.text_field :retail_price %>
-  </div>
-
-  <div>
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.order(:name),:id,:name, include_blank: true %>
-  </div>
-
-  <div>
-    <%= form.label :brand %>
-    <%= form.text_field :brand %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vehicle_make %>
-    <%= form.text_field :vehicle_make %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vehicle_model %>
-    <%= form.text_field :vehicle_model %>
-  </div>
-
-  <div>
-    <%= form.label :status %>
-    <%= form.select(:status, [['Active', 'active'], ['Not Active', 'not active']]) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -2,6 +2,18 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    redirect_to listings_path
+  end
+
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to listings_path
+  end
+
   # GET /listings or /listings.json
   def index
     @q = Listing.ransack(params[:q])

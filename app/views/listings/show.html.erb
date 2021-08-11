@@ -54,11 +54,16 @@
       </div>
       <div class="flex">
         <span class="title-font font-medium text-2xl text-gray-900">$<%= @listing.retail_price %></span>
+
         <%= link_to 'Back', :back, class: 'flex ml-auto mr-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' %>
         <% if @listing.status == "not active" %>
           
         <% else %>
-          <button class="mr-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</button>
+          <% if @cart.include?(@listing) %>
+            <%= button_to "Remove from cart", remove_from_cart_path(@listing), method: :delete, class: 'mr-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded cursor-pointer' %>
+          <% else %>
+            <%= button_to "Add To Cart", add_to_cart_path(@listing), class: 'mr-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded cursor-pointer' %>
+          <% end %>
         <% end %>
         <% if user_signed_in? && current_user.id == @listing.user_id %>
           <% if current_user.role_id == 3 %>
