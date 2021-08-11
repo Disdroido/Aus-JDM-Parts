@@ -2,14 +2,41 @@
 
 <div class="container mx-auto">
   <div class="lg:w-4/5 mx-auto flex flex-wrap">
-    <% if @listing.images.attached? %>
-      <% @listing.images.each do |image| %>
-        <%= image_tag image, class: 'lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded' %>
-      <% end %>
-    <% else %>
-      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
-    <% end %>
-    <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+    <div class="slideshow-container w-full mx-auto">
+
+      <!-- Full-width images with number and caption text -->
+        <% if @listing.images.attached? %>
+          <% @listing.images.each do |image| %>
+            <div class="mySlides fade">
+              <%= image_tag image, class: 'mx-auto lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded' %>
+            </div>
+          <% end %>
+        <% else %>
+          <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+        <% end %>
+
+      <!-- Next and previous buttons -->
+      <div class="flex mx-auto w-full">
+        <div class="ml-auto">
+          <a class="prev flex flex-inline justify-center relative px-5 cursor-pointer" onclick="plusSlides(-1)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="mr-auto">
+          <a class="next flex flex-inline justify-center relative px-5 cursor-pointer" onclick="plusSlides(1)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="mx-auto lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
       <p class="text-sm title-font text-gray-500 tracking-widest"><%= @listing.brand %></p>
       <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= @listing.name %></h1>
 
@@ -27,14 +54,45 @@
       </div>
       <div class="flex">
         <span class="title-font font-medium text-2xl text-gray-900">$<%= @listing.retail_price %></span>
-        <%= link_to 'Back', listings_path, class: 'flex ml-auto mr-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' %>
-        <% if user_signed_in? && current_user.id == @listing.user_id || current_user.role_id == 3 %>
-          <%= link_to 'Edit', edit_listing_path(@listing), class: 'flex text-white mr-2 bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-500 rounded' %>
-          <%= link_to 'Destroy', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class: "flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded" %>
+        <%= link_to 'Back', :back, class: 'flex ml-auto mr-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' %>
+        <% if @listing.status == "not active" %>
+          
         <% else %>
-          <button class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</button>
+          <button class="mr-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</button>
+        <% end %>
+        <% if user_signed_in? && current_user.id == @listing.user_id %>
+          <% if current_user.role_id == 3 %>
+            <%= link_to 'Edit', edit_listing_path(@listing), class: 'flex text-white mr-2 bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-500 rounded' %>
+            <%= link_to 'Destroy', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class: "flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded" %>
+            <% end %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "flex";
+} 
+</script>

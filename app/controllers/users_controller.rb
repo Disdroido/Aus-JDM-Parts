@@ -7,7 +7,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @listings
+
+    # for admin profile
+    @admin_search = Listing.ransack(params[:q])
+    @pagy, @listings = pagy(@admin_search.result, items: 100)
   end
 
   def edit

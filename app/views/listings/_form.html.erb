@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, as: :summernote %>
   </div>
 
   <div class="field">
@@ -49,6 +49,11 @@
   <div class="field">
     <%= form.label :vehicle_model %>
     <%= form.text_field :vehicle_model %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select(:status, [['Active', 'active'], ['Not Active', 'not active']]) %>
   </div>
 
   <div class="actions">
