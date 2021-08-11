@@ -51,10 +51,9 @@
                     <li><a href="../" class="lg-hidden brand"><%= image_tag("logo.png") %></a></li>
                     <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/">home</a></li>
                     <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/listings">listings</a></li>
-                    <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/users">users</a></li>
 
                     <% if user_signed_in? %>
-                        <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="<%= profile_path(current_user) %>">Profile</a></li>
+                        <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="<%= user_path(current_user) %>">Profile</a></li>
                     <% else %>
                         <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/sign_in">Sign In</a></li>
                         <li><a class="link btn bg-indigo-500 rounded hover:bg-indigo-600" href="/sign_up">Sign Up</a></li>
