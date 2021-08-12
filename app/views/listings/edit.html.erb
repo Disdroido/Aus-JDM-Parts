@@ -1,6 +1,17 @@
-<%= render 'form', listing: @listing %>
+<div class="flex items-center">
+    <div class="container mx-auto">
+        <div class="max-w-md mx-auto">
+            <div class="text-center">
+                <h1 class="mb-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">New Listing</h1>
+            </div>
 
-<div class="flex flex-inline justify-center mx-auto">
-    <%= link_to 'Show', @listing, class: 'pr-5' %> |
-    <%= link_to 'Back', :back, class: 'pl-5' %>
+            <%= render 'form', listing: @listing %>
+
+            <div class="flex flex-inline justify-center mx-auto">
+                <%= link_to 'Show', @listing, class: 'pr-5' %> |
+                <%= link_to 'Back', :back, class: 'pl-5' %>
+            </div>
+            
+        </div>
+    </div>
 </div>
