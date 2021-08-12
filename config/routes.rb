@@ -18,5 +18,11 @@ Rails.application.routes.draw do
 
   post "checkout/create", to: "checkout#create"
 
+  post "listings/add_to_cart/:id", to: "listings#add_to_cart", as: "add_to_cart"
+  delete "listings/remove_from_cart/:id", to: "listings#remove_from_cart", as: "remove_from_cart"
+
+  get "success", to: "checkout#success"
+  get "cancel", to: "checkout#cancel"
+
   resources :webhooks, only: [:create]
 end

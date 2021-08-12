@@ -61,7 +61,13 @@
                     <% if user_signed_in? %>
                         <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/sign_out" data-method="delete">Sign Out</a></li>
                     <% end %>
-                    <li><button id="myBtn" class="link border-b-2 border-transparent hover:border-indigo-500">Open Modal</button></li>
+                    <li>
+                        <button id="myBtn" class="text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -73,10 +79,23 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <% @cart.each do |listing| %>
-        <%= listing.name %>
-        <%= button_to "Remove from cart", remove_from_cart_path(listing), method: :delete, class: 'mr-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded cursor-pointer' %>
+    <p class="text-2xl">Shohping Cart</p>
+    <% if @cart.present? %>
+    <% else %>
+        <p>Your Shopping Cart Is Empty</p>
     <% end %>
+
+    <% @cart.each do |listing| %>
+        <div class="flex items-center mt-2">
+            <%= listing.name %>
+            <%= button_to "Remove from cart", remove_from_cart_path(listing), method: :delete, class: 'ml-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded cursor-pointer' %>
+        </div>
+    <% end %>
+
+    <% if @cart.present? %>
+        <%= button_to "Buy", checkout_create_path, class: 'mt-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' %>
+    <% end %>
+    <%= @cart.collect { |item| item.to_builder.attributes! } %>
   </div>
 
 </div>

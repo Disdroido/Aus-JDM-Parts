@@ -7,25 +7,28 @@ class WebhooksController < ApplicationController
     event = nil
 
     begin
-      event = Stripe::Webhook.construct_event(
-        payload, sig_header, whsec_7W02EyC6BF0RknyAtCmx0o2h8wTaEcsL
-      )
+        event = Stripe::Webhook.construct_event(
+            payload, sig_header, whsec_7W02EyC6BF0RknyAtCmx0o2h8wTaEcsL
+        )
     rescue JSON::ParserError => e
-      status 400
-      return
+        status 400
+        return
     rescue Stripe::SignatureVerificationError => e
-      # Invalid signature
-      puts "Signature error"
-      p e
-      return
+        # Invalid signature
+        puts "Signature error"
+        p e
+        return
     end
 
     # Handle the event
     case event.type
     when 'checkout.session.completed'
-      session = event.data.object
-      @listing = Listing.find_by(retail_price: session.amount_total)
-      @listing.increment!(:sales_count)
+        session = event.data.object
+        session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ["line_items"]})
+        session_with_expand.line_items.data.each do |line_item|
+            listing = Listing.find_by(stripe_product_id: line_item.price.product)
+            listing.increment!(:sales_count)
+        end
     end
 
     render json: { message: 'success' }

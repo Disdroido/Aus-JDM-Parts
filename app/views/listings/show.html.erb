@@ -59,8 +59,12 @@
         <% if @listing.status == "not active" %>
           
         <% else %>
-          <%= button_to "Buy", checkout_create_path(id: @listing.id), remote: true, class: 'mr-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' %>
+          <% if @cart.include?(@listing) %>
+          <% else %>
+            <%= button_to "Add To Cart", add_to_cart_path(@listing), class: 'mr-2 flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' %>
+          <% end %>
         <% end %>
+
         <% if user_signed_in? %>
           <% if current_user.id == @listing.user_id || current_user.role_id == 3 %>
             <%= link_to 'Edit', edit_listing_path(@listing), class: 'flex text-white mr-2 bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-500 rounded' %>

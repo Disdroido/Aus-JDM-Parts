@@ -1,17 +1,13 @@
 class CheckoutController < ApplicationController
 
   def create
-    listing = Listing.find(params[:id])
     @session = Stripe::Checkout::Session.create({
         customer: current_user.stripe_customer_id,
         payment_method_types: ['card'],
-        line_items: [{
-            price: listing.stripe_price_id,
-            quantity: 1
-        }],
+        line_items: @cart.collect { |item| item.to_builder.attributes! },
         mode: 'payment',
-        success_url: root_url,
-        cancel_url: root_url,
+        success_url: "https://ausjdmparts.herokuapp.com/success",
+        cancel_url: "https://ausjdmparts.herokuapp.com/cabcek"
     });
     respond_to do |format|
         format.js
