@@ -16,6 +16,5 @@ Rails.application.routes.draw do
     delete "sign_out", to: "devise/sessions#destroy"
   end
 
-  post "listings/add_to_cart/:id", to: "listings#add_to_cart", as: "add_to_cart"
-  delete "listings/remove_from_cart/:id", to: "listings#remove_from_cart", as: "remove_from_cart"
+  post "checkout/create", to: "checkout#create"
 end
