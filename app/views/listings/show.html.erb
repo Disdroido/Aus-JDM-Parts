@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="flex">
-        <span class="title-font font-medium text-2xl text-gray-900"><%= number_to_currency(@listing.retail_price) %></span>
+        <span class="title-font font-medium text-2xl text-gray-900"><%= number_to_currency(@listing.retail_price/100) %></span>
         
         <%= link_to 'Back', :back, class: 'flex ml-auto mr-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' %>
         <% if @listing.status == "not active" %>
