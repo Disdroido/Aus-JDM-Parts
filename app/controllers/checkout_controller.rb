@@ -1,12 +1,12 @@
 class CheckoutController < ApplicationController
 
   def create
-    @listings = Listings.find(params[:id])
+    listing = Listing.find(params[:id])
     @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
-        name: @listing.name,
-        amount: product.price,
+        name: listing.name,
+        amount: listing.retail_price,
         currency: "usd",
         quantity: 1
       }],
