@@ -313,3 +313,13 @@ label {
     text-decoration: none;
     cursor: pointer;
 }
+
+.hero {
+    height: 700px;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 50vh;
+    }
+}

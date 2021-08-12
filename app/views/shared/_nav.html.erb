@@ -1,6 +1,13 @@
 <div class="wrapper">
     <header>
         <nav id="navbar" class="nav bg-gray-900">
+            <% if user_signed_in? %>
+            <button id="myBtn" class="text-white float-right ml-auto mr-14 absolute justify-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </button>
+            <% end %>
             <input type="checkbox" id="nav" class="hidden">
             <label for="nav" class="nav-btn">
                 <i></i>
@@ -19,16 +26,16 @@
 
                     <% if user_signed_in? %>
                         <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="<%= user_path(current_user) %>">Profile</a></li>
-                    <% else %>
-                        <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/sign_in">Sign In</a></li>
-                        <li><a class="link btn bg-indigo-500 rounded hover:bg-indigo-600" href="/sign_up">Sign Up</a></li>
                         <li>
-                            <button id="myBtn" class="text-white">
+                            <button id="myBtn" class="text-white m-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
                             </button>
                         </li>
+                    <% else %>
+                        <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/sign_in">Sign In</a></li>
+                        <li><a class="link btn bg-indigo-500 rounded hover:bg-indigo-600" href="/sign_up">Sign Up</a></li>
                     <% end %>
                     <% if user_signed_in? %>
                         <li><a class="link border-b-2 border-transparent hover:border-indigo-500" href="/sign_out" data-method="delete">Sign Out</a></li>
