@@ -16,6 +16,28 @@ It is a problem that needs to be sold because there are a large number of car pa
 
 https://ausjdmparts.herokuapp.com/
 
+
+
+## Github Repository
+
+https://github.com/Disdroido/Aus-JDM-Parts
+
+
+
+## Description Of Marketplace
+
+The purpose of Aus JDM Parts is to allow a market place for all parts correlating to Japanese cars in Australia. The features of the website include:
+
+- Listing create, edit and delete
+- Image uploading for listing to aws
+- Role creation
+- Category creation
+- Admin panel for admin tasks
+- User sign up and sign in
+- Profile page where profile can be updated
+- Stripe user creation on sign up
+- Stripe purchasing (still being implemented)
+
  
 
 
